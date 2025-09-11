@@ -11,9 +11,9 @@ public class BitcoinInfoModel : PageModel
 
     public async Task OnGet()
     {
-        var rpcUser = Environment.GetEnvironmentVariable("BITCOIN_RPC_USER") ?? "user";
-        var rpcPassword = Environment.GetEnvironmentVariable("BITCOIN_RPC_PASSWORD") ?? "password";
-        var rpcUrl = Environment.GetEnvironmentVariable("BITCOIN_RPC_URL") ?? "http://bitcoind:18443";
+        var rpcUser = Environment.GetEnvironmentVariable("BITCOIN_RPC_USER") ?? "bitcoin";
+        var rpcPassword = Environment.GetEnvironmentVariable("BITCOIN_RPC_PASSWORD") ?? "bitcoin";
+        var rpcUrl = Environment.GetEnvironmentVariable("BITCOIN_RPC_URL") ?? "http://localhost:18443";
 
         var credentials = new NetworkCredential(rpcUser, rpcPassword);
         var client = new RPCClient(credentials, new Uri(rpcUrl), Network.RegTest);

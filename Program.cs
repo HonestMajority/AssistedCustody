@@ -12,7 +12,8 @@ builder.Services.AddSingleton(sp =>
     var config = sp.GetRequiredService<IConfiguration>().GetSection("BitcoinRpc");
     var credentials = new NetworkCredential(config["Username"], config["Password"]);
     var url = new Uri(config["Url"]!);
-    return new RPCClient(credentials, url, Network.RegTest);
+    var network = Network.GetNetwork(config["Network"] ?? string.Empty) ?? Network.RegTest;
+    return new RPCClient(credentials, url, network);
 });
 
 var app = builder.Build();

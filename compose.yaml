@@ -14,10 +14,6 @@ services:
       dockerfile: Dockerfile
     depends_on:
       - bitcoind
-    environment:
-      BITCOIN_RPC_USER: bitcoin
-      BITCOIN_RPC_PASSWORD: bitcoin
-      BITCOIN_RPC_URL: http://bitcoind:18443
 
 volumes:
   bitcoin-data:

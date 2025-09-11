@@ -1,0 +1,6 @@
+﻿services:
+  assistedcustody:
+    image: assistedcustody
+    build:
+      context: .
+      dockerfile: Dockerfile

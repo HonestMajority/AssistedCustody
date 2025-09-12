@@ -5,16 +5,33 @@
 }
 
 <h1>Generated Wallet</h1>
-<p><strong>Mnemonic:</strong> @Model.Mnemonic</p>
-<p><strong>XPRV:</strong> @Model.Xprv</p>
+
+<p><strong>Mnemonic:</strong> <span id="mnemonic">@Model.Mnemonic</span></p>
+<p><strong>XPRV:</strong> <span id="xpriv">@Model.Xprv</span></p>
+
+<form method="post">
+    <button type="submit">Generate Mnemonic</button>
+</form>
 
 <script>
-    (function() {
-        const mnemonic = "@Model.Mnemonic";
-        const xpriv = "@Model.Xprv";
-        if (mnemonic && xpriv) {
-            localStorage.setItem('mnemonic', mnemonic);
-            localStorage.setItem('xpriv', xpriv);
+    (function () {
+        const mnemonicField = document.getElementById('mnemonic');
+        const xprivField = document.getElementById('xpriv');
+        const serverMnemonic = "@(Model.Mnemonic ?? "")";
+        const serverXpriv = "@(Model.Xprv ?? "")";
+
+        if (serverMnemonic && serverXpriv) {
+            mnemonicField.textContent = serverMnemonic;
+            xprivField.textContent = serverXpriv;
+            localStorage.setItem('mnemonic', serverMnemonic);
+            localStorage.setItem('xpriv', serverXpriv);
+        } else {
+            const storedMnemonic = localStorage.getItem('mnemonic');
+            const storedXpriv = localStorage.getItem('xpriv');
+            if (storedMnemonic && storedXpriv) {
+                mnemonicField.textContent = storedMnemonic;
+                xprivField.textContent = storedXpriv;
+            }
         }
     })();
 </script>

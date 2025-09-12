@@ -16,6 +16,10 @@ public class MnemonicModel : PageModel
 
     public void OnGet()
     {
+    }
+
+    public void OnPost()
+    {
         var m = new Mnemonic(Wordlist.English, WordCount.Twelve);
         Mnemonic = m.ToString();
         Xprv = m.DeriveExtKey().GetWif(_network).ToString();

@@ -10,9 +10,16 @@ builder.Services.AddRazorPages();
 builder.Services.AddSingleton(sp =>
 {
     var config = sp.GetRequiredService<IConfiguration>().GetSection("BitcoinRpc");
+    var networkName = config["Network"];
+    return Network.GetNetwork(networkName ?? string.Empty) ?? Network.RegTest;
+});
+
+builder.Services.AddSingleton(sp =>
+{
+    var config = sp.GetRequiredService<IConfiguration>().GetSection("BitcoinRpc");
     var credentials = new NetworkCredential(config["Username"], config["Password"]);
     var url = new Uri(config["Url"]!);
-    var network = Network.GetNetwork(config["Network"] ?? string.Empty) ?? Network.RegTest;
+    var network = sp.GetRequiredService<Network>();
     return new RPCClient(credentials, url, network);
 });
 

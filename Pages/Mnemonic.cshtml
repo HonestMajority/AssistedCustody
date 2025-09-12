@@ -1,0 +1,39 @@
+@page
+@model AssistedCustody.Pages.MnemonicModel
+@{
+    ViewData["Title"] = "Mnemonic Generator";
+}
+
+<h1>Generated Wallet</h1>
+
+<p><strong>Mnemonic:</strong> <span id="mnemonic">@Model.Mnemonic</span></p>
+<p><strong>XPRV:</strong> <span id="xpriv">@Model.Xprv</span></p>
+
+<form method="post">
+    <button type="submit">Generate Mnemonic</button>
+</form>
+
+@section Scripts {
+    <script>
+        $(function () {
+            const $mnemonicField = $('#mnemonic');
+            const $xprivField = $('#xpriv');
+            const serverMnemonic = '@(Model.Mnemonic ?? "")';
+            const serverXpriv = '@(Model.Xprv ?? "")';
+
+            if (serverMnemonic && serverXpriv) {
+                $mnemonicField.text(serverMnemonic);
+                $xprivField.text(serverXpriv);
+                localStorage.setItem('mnemonic', serverMnemonic);
+                localStorage.setItem('xpriv', serverXpriv);
+            } else {
+                const storedMnemonic = localStorage.getItem('mnemonic');
+                const storedXpriv = localStorage.getItem('xpriv');
+                if (storedMnemonic && storedXpriv) {
+                    $mnemonicField.text(storedMnemonic);
+                    $xprivField.text(storedXpriv);
+                }
+            }
+        });
+    </script>
+}

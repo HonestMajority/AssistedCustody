@@ -1,6 +1,6 @@
 ﻿services:
   bitcoind:
-    image: ruimarinho/bitcoin-core:26.0
+    image: ruimarinho/bitcoin-core:latest
     command: ["-regtest", "-printtoconsole", "-rpcallowip=0.0.0.0/0", "-rpcbind=0.0.0.0", "-rpcuser=bitcoin", "-rpcpassword=bitcoin"]
     ports:
       - "18443:18443"

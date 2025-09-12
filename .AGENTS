@@ -1,0 +1,13 @@
+This repository uses .NET 9.0 preview.
+
+# General Instructions
+- Use 4 spaces for indentation in C# files.
+- Keep code clean and document complex logic with comments.
+
+# Testing
+- Ensure the appropriate .NET 9 SDK is installed.
+- Run `dotnet build` to verify the project compiles.
+- If test projects are added, run `dotnet test`.
+
+# Pull Requests
+- Include relevant documentation and tests for new features.

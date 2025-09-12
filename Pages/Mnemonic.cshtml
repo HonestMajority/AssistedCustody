@@ -1,0 +1,20 @@
+@page
+@model AssistedCustody.Pages.MnemonicModel
+@{
+    ViewData["Title"] = "Mnemonic Generator";
+}
+
+<h1>Generated Wallet</h1>
+<p><strong>Mnemonic:</strong> @Model.Mnemonic</p>
+<p><strong>XPRV:</strong> @Model.Xprv</p>
+
+<script>
+    (function() {
+        const mnemonic = "@Model.Mnemonic";
+        const xpriv = "@Model.Xprv";
+        if (mnemonic && xpriv) {
+            localStorage.setItem('mnemonic', mnemonic);
+            localStorage.setItem('xpriv', xpriv);
+        }
+    })();
+</script>

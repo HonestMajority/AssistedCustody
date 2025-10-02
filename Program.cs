@@ -1,3 +1,5 @@
+using AssistedCustody.Data;
+using Microsoft.EntityFrameworkCore;
 using NBitcoin;
 using NBitcoin.RPC;
 using System.Net;
@@ -6,6 +8,12 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+
+var connectionString = builder.Configuration.GetConnectionString("AssistedCustodyDatabase")
+    ?? throw new InvalidOperationException("Connection string 'AssistedCustodyDatabase' not found.");
+
+builder.Services.AddDbContext<AssistedCustodyDbContext>(options =>
+    options.UseNpgsql(connectionString));
 
 builder.Services.AddSingleton(sp =>
 {
@@ -24,6 +32,12 @@ builder.Services.AddSingleton(sp =>
 });
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<AssistedCustodyDbContext>();
+    db.Database.Migrate();
+}
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

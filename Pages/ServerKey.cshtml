@@ -1,0 +1,28 @@
+@page
+@model AssistedCustody.Pages.ServerKeyModel
+@{
+    ViewData["Title"] = "Server Key";
+}
+
+<h1>Server Key</h1>
+
+@if (Model.Xprv is null)
+{
+    <p>No server key has been generated yet.</p>
+}
+else
+{
+    <div class="mb-3">
+        <label class="form-label">Current XPRIV</label>
+        <div class="form-control text-break">@Model.Xprv</div>
+    </div>
+}
+
+<form method="post">
+    <button type="submit" class="btn btn-primary">Generate Server Key</button>
+</form>
+
+@if (!string.IsNullOrWhiteSpace(Model.StatusMessage))
+{
+    <div class="alert alert-info mt-3">@Model.StatusMessage</div>
+}

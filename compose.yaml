@@ -1,4 +1,4 @@
-﻿services:
+services:
   bitcoind:
     image: ruimarinho/bitcoin-core:latest
     command: ["-regtest", "-printtoconsole", "-rpcallowip=0.0.0.0/0", "-rpcbind=0.0.0.0", "-rpcuser=bitcoin", "-rpcpassword=bitcoin"]
@@ -6,6 +6,17 @@
       - "18443:18443"
     volumes:
       - bitcoin-data:/home/bitcoin/.bitcoin
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: assistedcustody
+      POSTGRES_PASSWORD: assistedcustody
+      POSTGRES_DB: assistedcustody
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
 
 volumes:
   bitcoin-data:
+  postgres-data:

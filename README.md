@@ -22,7 +22,7 @@ This prototype demonstrates a collaborative custody scheme for Bitcoin where a t
 The holding account supports three spending paths:
 1. **Collaborative Withdrawal (Immediate)** – both client and server sign to move funds.
 2. **User Unilateral Exit (After 3 Months)** – the client can sweep funds alone after a delay.
-3. **Server Recovery (After 6 Months)** – the server can sweep funds to help recover the user’s funds.
+3. **Presigned Recovery (After 6 Months)** – Presigned, timelocked transactions can be published to help recover the user’s funds to pre-selected destinations.
 
 ## Building
 This project targets **.NET 9.0 preview**.

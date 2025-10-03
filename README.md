@@ -2,6 +2,10 @@
 
 This prototype demonstrates a collaborative custody scheme for Bitcoin where a trusted server assists users while preserving their ability to exit on their own.
 
+## NOTE:
+
+This is very much a work in progress. Nothing is working yet. The first iteration will be a prototype web app, which will later be further developed into mobile applications.
+
 ## Goals
 - **Unilateral Exit**: Customers must always be able to withdraw their funds independently after a delay.
 - **Seamless UX for Happy Path**: Normal withdrawals are collaborative and require minimal user interaction.
